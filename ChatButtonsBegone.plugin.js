@@ -4,7 +4,7 @@
  * @description Remove annoying stuff from your Discord clients.
  * @author LancersBucket
  * @authorId 355477882082033664
- * @version 3.0.1
+ * @version 3.0.2
  * @source https://github.com/LancersBucket/ChatButtonsBegone
  */
 /*@cc_on
@@ -141,7 +141,7 @@ class EventHijacker {
 const config = {
     info: {
         name: 'ChatButtonsBegone',
-        version: '3.0.1',
+        version: '3.0.2',
         github: 'https://github.com/LancersBucket/ChatButtonsBegone',
         github_raw: 'https://raw.githubusercontent.com/LancersBucket/ChatButtonsBegone/refs/heads/',
         branch: 'main',
@@ -956,7 +956,10 @@ module.exports = class ChatButtonsBegone {
         /// Title Bar ///
         if (this.settings.toolbar.navButtons) this.addCssStyle('[class^="backForwardButtons"]');
         if (this.settings.toolbar.locator) this.addCssStyle('[class^="base"]>[class^="bar"]>[class^="title"]');
-        if (this.settings.toolbar.checkpointButton) this.addCssStyle('[class*="bar"] [class^="trailing"] > div[class^="button"]');
+        if (this.settings.toolbar.checkpointButton) {
+            this.addCssStyle('[class*="bar"] [class^="trailing"] > div[class^="button"]');
+            this.addCssStyle('[class^="toolbar"] [class^="button"]:has(>svg>path[d^="M5.1 1a2.1 2.1 0 0 1 1.8 3.14h14.05c.84"])');
+        }
         if (this.settings.toolbar.helpButton) this.addCssStyle('a[href="https://support.discord.com"]');
         if (this.settings.toolbar.inboxButton) this.addCssStyle('div[class^="recentsIcon"], [class*="bar"] [class^="trailing"] > div[class^="clickable"]');
         

@@ -1,4 +1,8 @@
 # Changelog
+## v3.0.2 - December 5th, 2025
+### Fixed
+- Remove Checkpoint compatability with other plugins (OldTitlebar, Collapsible UI, etc.)
+
 ## v3.0.1 - December 4th, 2025
 ### Added
 - Option to remove the new Discord Checkpoint button

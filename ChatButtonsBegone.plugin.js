@@ -866,21 +866,17 @@ module.exports = class ChatButtonsBegone {
     addStyles() {
         /// Chat Buttons ///
         if (this.settings.chatbar.attachButton) this.addCssStyle('[class^="attachWrapper"]');
-        if (this.settings.chatbar.giftButton) {
-            // New New Implementation
-            this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="container"]:has(> [class^="button"] > [class^="buttonWrapper"])');
-            // New Implementation
-            this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="container"]:has(> [class^="button"] + span)');
-            // Old Implementation
-            this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="button"]');
-        }
+        if (this.settings.chatbar.giftButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="button"]:has([class^="buttonWrapper"])');
         if (this.settings.chatbar.gifButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > div[class^="expression"]:not(:has([class*="stickerButton"], [class*="emojiButton"]))');
         if (this.settings.chatbar.stickerButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="expression"]:has([class*="stickerButton"])');
         if (this.settings.chatbar.emojiButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="expression"]:has([class*="emojiButton"])');
-        if (this.settings.chatbar.appLauncherButton) this.addCssStyle('[class^=channelAppLauncher]');
+        if (this.settings.chatbar.appLauncherButton) this.addCssStyle('[class^="channelAppLauncher"], [class*="app-launcher-entrypoint"]');
 
         /// Message Actions ///
-        if (this.settings.messageActions.quickReactions) this.addCssStyle('[class^="hoverBarButton"][aria-label*="Click to react with"]');
+        if (this.settings.messageActions.quickReactions) {
+            this.addCssStyle('[class^="message"] [class^="buttonsInner"] [class^="hoverBarButton"]:has([class*="buttonContent"])');
+            this.addCssStyle('[class^="message"] [class^="buttonsInner"] [class^="separator"]');
+        }
         if (this.settings.messageActions.superReactionButton) this.addCssStyle('[class^="hoverBarButton"][aria-label="Add Super Reaction"]');
         if (this.settings.messageActions.reactionButton) this.addCssStyle('[class^="hoverBarButton"][aria-label="Add Reaction"]');
         if (this.settings.messageActions.editButton) this.addCssStyle('[class^="hoverBarButton"][aria-label="Edit"]');
@@ -950,7 +946,7 @@ module.exports = class ChatButtonsBegone {
         }
         if (this.settings.voice.screensharePanelButton) this.addCssStyle('div[class^="actionButtons"] button[aria-label="Share Your Screen"]');
         if (this.settings.voice.activityPanelButton) this.addCssStyle('div[class^="actionButtons"] button[aria-label="Start An Activity"]');
-        if (this.settings.voice.soundboardPanelButton) this.addCssStyle('div[class^="actionButtons"] div:has(> button[aria-label="Open Soundboard"])');
+        if (this.settings.voice.soundboardPanelButton) this.addCssStyle('div[class^="actionButtons"] span:has(button)');
         if (this.settings.voice.krispButton) this.addCssStyle('button[aria-label="Noise Suppression powered by Krisp"]');
 
         /// Title Bar ///
@@ -982,7 +978,7 @@ module.exports = class ChatButtonsBegone {
         }
 
         if (this.settings.profileCustomizations.avatarDecoration == 'memberlist') {
-            this.addCssStyle('div[class*="member"] div[class*="avatar"] [class*="avatarDecoration"]');
+            this.addCssStyle('div[class*="avatar"] [class*="avatarDecoration"]');
         } else if (this.settings.profileCustomizations.avatarDecoration == 'profile') {
             this.addCssStyle('div[class*="user-profile-popout"] div[class*="avatar"] [class*="avatarDecoration"]');
             this.addCssStyle('div[class*="profile"] div[class*="avatar"] [class*="avatarDecoration"]');

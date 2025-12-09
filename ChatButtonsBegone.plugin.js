@@ -286,20 +286,6 @@ const config = {
                 },
                 {
                     type: 'switch',
-                    id: 'snowsgivingTab',
-                    name: 'Remove Snowsgiving Tab',
-                    note: 'Removes the seasonal "Snowsgiving" tab from the DM list.',
-                    value: false,
-                },
-                {
-                    type: 'switch',
-                    id: 'discordBirthdayTab',
-                    name: 'Remove Discord\'s Birthday Tab',
-                    note: 'Removes the seasonal "Discord\'s Birthday" tab from the DM list.',
-                    value: false,
-                },
-                {
-                    type: 'switch',
                     id: 'discordShopTab',
                     name: 'Remove Shop Tab',
                     note: 'Removes the Shop tab from the DM list.',
@@ -615,8 +601,8 @@ const config = {
                 {
                     type: 'switch',
                     id: 'avatarPopover',
-                    name: 'Remove Avatar Reply/React Popover',
-                    note: 'Removes the buttons when you hover over a user\'s profile picture.',
+                    name: 'Remove Status Reply/React Popover',
+                    note: 'Removes the buttons when you hover over a user\'s status.',
                     value: false,
                 },
                 {
@@ -652,6 +638,13 @@ const config = {
                     id: 'activityPanel',
                     name: 'Remove Game Activity Panel',
                     note: 'Removes the current game activity panel from the user voice chat panel.',
+                    value: false,
+                },
+                {
+                    type: 'switch',
+                    id: 'seasonalEvents',
+                    name: 'Remove Seasonal Events',
+                    note: 'Removes seasonal event tabs and buttons (i.e. Snowsgiving, Discord\'s Birthday, etc.).',
                     value: false,
                 },
             ],
@@ -888,8 +881,6 @@ module.exports = class ChatButtonsBegone {
         if (this.settings.dms.quickSwitcher) this.addCssStyle('[class*="privateChannels"] [class*="searchBar"]');
         if (this.settings.dms.friendsTab) this.addCssStyle('[href="/channels/@me"]');
         if (this.settings.dms.premiumTab) this.addCssStyle('[href="/store"]');
-        if (this.settings.dms.snowsgivingTab) this.addCssStyle('[href="//discord.com/snowsgiving"]');
-        if (this.settings.dms.discordBirthdayTab) this.addCssStyle('[href="/activities"]');
         if (this.settings.dms.discordShopTab) {
             this.addCssStyle('[href="/shop"]');
             this.addCssStyle('[class^="profileButtons"] > div:has(button:not([aria-expanded]))');
@@ -1007,7 +998,7 @@ module.exports = class ChatButtonsBegone {
         if (this.settings.miscellaneous.addServerButton) this.addCssStyle('div[class*="itemsContainer"] > div[data-direction="vertical"] > div[class*="tutorialContainer"]:not(:first-child)');
         if (this.settings.miscellaneous.discoverButton) this.addCssStyle('div[class*="itemsContainer"] > div[data-direction="vertical"] > div[class*="listItem"]:has(+ div[aria-hidden="true"])');
         if (this.settings.miscellaneous.placeholderText) this.addCssStyle('[class*="placeholder"][class*="slateTextArea"]');
-        if (this.settings.miscellaneous.avatarPopover) this.addCssStyle('[class*="avatarPopover"]');
+        if (this.settings.miscellaneous.avatarPopover) this.addCssStyle('[class*="statusPopover"]');
         if (this.settings.miscellaneous.noQuests) {
             // TODO: Currently only supports the Quests in the Active Now section.
             this.addCssStyle('div[class*="inset"]:has(div[class*="promotedTag"])');
@@ -1046,6 +1037,7 @@ module.exports = class ChatButtonsBegone {
 
         if (this.settings.miscellaneous.statusNudgePopup) this.addCssStyle('div[id^="popout"]:has([nudge])');
         if (this.settings.miscellaneous.activityPanel) this.addCssStyle('div[class*="activityPanel"]');
+        if (this.settings.miscellaneous.seasonalEvents) this.addCssStyle('[href="//discord.com/snowsgiving"], [href="/activities"]');
         
         /// Compatibility ///
         if (this.settings.compatibility.invisibleTypingButton) this.addCssStyle('div[class*="buttons"] div:has([class*="invisibleTypingButton"])');

@@ -28,6 +28,10 @@ Special thanks to [@Zacam](https://github.com/Zacam) for their work on this upda
 - Option to remove Discord's Birthday Tab
 - Option to remove Status Nudge Popup
 
+## v3.0.3 - December 12th, 2025
+### Fixed
+- Gift button not removing properly
+
 ## v3.0.2 - December 5th, 2025
 ### Fixed
 - Remove Checkpoint compatability with other plugins (OldTitlebar, Collapsible UI, etc.)

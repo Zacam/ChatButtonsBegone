@@ -863,9 +863,9 @@ module.exports = class ChatButtonsBegone {
             this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="container"]:has([class^="button"] [class^="buttonWrapper"])');
             this.addCssStyle('[class^="buttons"] > [class^="button"]:has([class^="buttonWrapper"] svg>g[clip-path^="url(#__lottie_element_"])');
         }
-        if (this.settings.chatbar.gifButton) this.addCssStyle('[class^="expression-"]:has([class^="button"] svg>g[clip-path^="url(#__lottie_element_"])');
-        if (this.settings.chatbar.stickerButton) this.addCssStyle('[class^="expression"]:has([class*="stickerButton"])');
-        if (this.settings.chatbar.emojiButton) this.addCssStyle('[class^="buttons"] > [class^="expression"]:has([class*="emojiButton"])');
+        if (this.settings.chatbar.gifButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > div[class^="expression"]:not(:has([class*="stickerButton"], [class*="emojiButton"]))');
+        if (this.settings.chatbar.stickerButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="expression"]:has([class*="stickerButton"])');
+        if (this.settings.chatbar.emojiButton) this.addCssStyle('[class^="channelTextArea"] [class^="buttons"] > [class^="expression"]:has([class*="emojiButton"])');
         if (this.settings.chatbar.appLauncherButton) this.addCssStyle('[class*="app-launcher-entrypoint"]');
 
         /// Message Actions ///
@@ -946,12 +946,9 @@ module.exports = class ChatButtonsBegone {
         /// Title Bar ///
         if (this.settings.toolbar.navButtons) this.addCssStyle('[class^="backForwardButtons"]');
         if (this.settings.toolbar.locator) this.addCssStyle('[class^="base"]>[class^="bar"]>[class^="title"]');
-        if (this.settings.toolbar.checkpointButton) {
-            this.addCssStyle('[class*="bar"] [class^="trailing"] > div[class^="button"]');
-            this.addCssStyle('[class^="toolbar"] [class^="button"]:has(>svg>path[d^="M5.1 1a2.1 2.1 0 0 1 1.8 3.14h14.05c.84"])');
-        }
+        if (this.settings.toolbar.checkpointButton) this.addCssStyle('[class^="button"]:has(>svg>path[d^="M5.1 1a2.1 2.1 0 0 1 1.8 3.14h14.05c.84"])');
         if (this.settings.toolbar.helpButton) this.addCssStyle('a[href="https://support.discord.com"]');
-        if (this.settings.toolbar.inboxButton) this.addCssStyle('div[class^="recentsIcon"], [class*="bar"] [class^="trailing"] > div[class^="clickable"]');
+        if (this.settings.toolbar.inboxButton) this.addCssStyle('[class^="clickable"]:has(svg>path[d^="M5 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3"])');
         
         /// Profile Customizations ///
         if (this.settings.profileCustomizations.namePlate) {

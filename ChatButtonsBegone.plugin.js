@@ -4,7 +4,7 @@
  * @description Remove annoying stuff from your Discord clients.
  * @author LancersBucket
  * @authorId 355477882082033664
- * @version 3.2.1
+ * @version 3.2.2
  * @source https://github.com/LancersBucket/ChatButtonsBegone
  */
 /*@cc_on
@@ -141,7 +141,7 @@ class EventHijacker {
 const config = {
     info: {
         name: 'ChatButtonsBegone',
-        version: '3.2.1',
+        version: '3.2.2',
         github: 'https://github.com/LancersBucket/ChatButtonsBegone',
         github_raw: 'https://raw.githubusercontent.com/LancersBucket/ChatButtonsBegone/refs/heads/',
         branch: 'main',
@@ -843,29 +843,24 @@ module.exports = class ChatButtonsBegone {
     }
 
     ensureDefaultSettings() {
-        const defaultSettings = this.defaultSettings();
-        for (const key in defaultSettings) {
-            if (typeof defaultSettings[key] === 'object' && !Array.isArray(defaultSettings[key])) {
-                this.settings[key] = { ...defaultSettings[key], ...this.settings[key] };
-            } else if (!(key in this.settings)) {
-                this.settings[key] = defaultSettings[key];
+        for (const category of config.defaultConfig) {
+            if (category.type === 'category') {
+                if (!(category.id in this.settings)) {
+                    this.settings[category.id] = {};
+                }
+                for (const setting of category.settings) {
+                    if (!(setting.id in this.settings[category.id]) || this.settings[category.id][setting.id] == null) {
+                        this.settings[category.id][setting.id] = setting.value;
+                    }
+                }
+            } else {
+                if (!(category.id in this.settings)) {
+                    this.settings[category.id] = category.value;
+                }
             }
         }
-        this.api.Data.save('settings', this.settings);
-    }
 
-    defaultSettings() {
-        return config.defaultConfig.reduce((acc, cur) => {
-            if (cur.type === 'category') {
-                acc[cur.id] = cur.settings.reduce((a, c) => {
-                    a[c.id] = c.value;
-                    return a;
-                }, {});
-            } else {
-                acc[cur.id] = cur.value;
-            }
-            return acc;
-        }, {});
+        this.api.Data.save('settings', this.settings);
     }
 
     // Helper function for adding a CSS rule.
@@ -1082,6 +1077,12 @@ module.exports = class ChatButtonsBegone {
         try {
             // Check the latest version on remote
             const request = new XMLHttpRequest();
+            
+            // Ensure branch is set
+            if (this.settings.core.branch != 'main' && this.settings.core.branch != 'desktop-land-and-learn') {
+                this.settings.core.branch = 'main';
+                this.api.Data.save('settings', this.settings);
+            }
             let link = config.info.github_raw + this.settings.core.branch + '/ChatButtonsBegone.plugin.js';
             request.open('GET', link);
             request.onload = () => {

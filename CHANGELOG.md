@@ -1,4 +1,8 @@
 # Changelog
+## v3.2.2
+### Fixed
+- Auto-updater not updating if the branch key is invalid
+
 ## v3.2.1 - December 21st, 2025
 ### Fixed
 - Remove Server Banner not removing properly (thanks [@Zacam](https://github.com/Zacam)!)

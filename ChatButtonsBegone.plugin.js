@@ -553,7 +553,7 @@ module.exports = class ChatButtonsBegone {
     constructor(meta) {
         this.api = new BdApi(meta.name);
         this.styler = new Styler(meta.name);
-        this.settings = this.api.Data.load('settings') || this.defaultSettings();
+        this.settings = this.api.Data.load('settings') || {};
 
         this.settingVersion = this.api.Data.load('settingVersion') || '0.0.0';
 

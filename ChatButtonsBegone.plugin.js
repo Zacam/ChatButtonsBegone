@@ -723,10 +723,7 @@ module.exports = class ChatButtonsBegone {
             this.styler.add('[class*="channelTextArea"] [class*="buttons"]');
         } else {
             // Otherwise, hide individual buttons
-            if (this.settings.chatbar.giftButton) {
-                this.styler.add('[class*="channelTextArea"] [class*="buttons"] > [class*="container"]:has([class*="button"] [class*="buttonWrapper"]) svg:not([class*="sendIcon"])');
-                this.styler.add('[class*="channelTextArea"] [class*="buttons"] > [class*="button"]:not([class$="buttonContainer"])');
-            }
+            if (this.settings.chatbar.giftButton) this.styler.add('[class*="channelTextArea"] [class*="buttons"] > [class*="button"]:not([class$="buttonContainer"])');
             if (this.settings.chatbar.gifButton) this.styler.add('[class*="channelTextArea"] [class*="buttons"] > div[class*="expression"]:not(:has([class*="stickerButton"], [class*="emojiButton"]))');
             if (this.settings.chatbar.stickerButton) this.styler.add('[class*="channelTextArea"] [class*="buttons"] > [class*="expression"]:has([class*="stickerButton"])');
             if (this.settings.chatbar.emojiButton) this.styler.add('[class*="channelTextArea"] [class*="buttons"] > [class*="expression"]:has([class*="emojiButton"])');
